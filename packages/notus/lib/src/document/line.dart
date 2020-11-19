@@ -235,8 +235,12 @@ class LineNode extends ContainerNode<LeafNode>
       // otherwise forward to children as it's inline format update.
       assert(index + local != thisLength,
           'It is not allowed to apply inline attributes to line itself.');
-      assert(style.values
-          .every((attr) => attr.scope == NotusAttributeScope.inline));
+		assert(style.values
+          .every((attr) => {
+			    print(attr);
+				 print(attr.scope);
+				 attr.scope == NotusAttributeScope.inline
+			 }));
       super.retain(index, local, style);
     }
 
