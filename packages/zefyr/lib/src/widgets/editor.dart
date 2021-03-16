@@ -21,6 +21,7 @@ class ZefyrEditor extends StatefulWidget {
     Key key,
     @required this.controller,
     @required this.focusNode,
+    this.expandable = false,
     this.autofocus = true,
     this.mode = ZefyrMode.edit,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0),
@@ -73,6 +74,8 @@ class ZefyrEditor extends StatefulWidget {
 
   /// Padding around editable area.
   final EdgeInsets padding;
+
+  final bool expandable;
 
   /// The appearance of the keyboard.
   ///
@@ -207,6 +210,7 @@ class _ZefyrEditorState extends State<ZefyrEditor> {
       imageDelegate: _scope.imageDelegate,
       selectionControls: widget.selectionControls,
       autofocus: widget.autofocus,
+      expandable: widget.expandable,
       mode: widget.mode,
       padding: widget.padding,
       physics: widget.physics,
