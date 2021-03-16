@@ -34,7 +34,6 @@ enum ZefyrToolbarAction {
   hideKeyboard,
   close,
   confirm,
-  mention,
 }
 
 final kZefyrToolbarAttributeActions = <ZefyrToolbarAction, NotusAttributeKey>{
