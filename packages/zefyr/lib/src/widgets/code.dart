@@ -21,15 +21,15 @@ class ZefyrCode extends StatelessWidget {
 
     final items = <Widget>[];
     for (var line in node.children) {
-      items.add(_buildLine(line, zefyrTheme.attributeTheme.code.textStyle));
+      items.add(_buildLine(line, zefyrTheme.attributeTheme.codeblock.textStyle));
     }
 
     // TODO: move background color and decoration to BlockTheme
     final color = theme.primaryColorBrightness == Brightness.light
         ? Colors.grey.shade200
-        : Colors.grey.shade800;
+        : Colors.grey.shade400;
     return Padding(
-      padding: zefyrTheme.attributeTheme.code.padding,
+      padding: zefyrTheme.attributeTheme.codeblock.padding,
       child: Container(
         decoration: BoxDecoration(
           color: color,

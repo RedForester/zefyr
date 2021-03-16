@@ -287,6 +287,9 @@ class AttributeTheme {
   /// Style used to render "italic" text.
   final TextStyle italic;
 
+  /// Style used to render "code" text.
+  final TextStyle code;
+
   /// Style used to render text containing links.
   final TextStyle link;
 
@@ -309,12 +312,13 @@ class AttributeTheme {
   final BlockTheme quote;
 
   /// Style theme used to render code blocks.
-  final BlockTheme code;
+  final BlockTheme codeblock;
 
   /// Creates a [AttributeTheme] given a set of exact values.
   AttributeTheme({
     this.bold,
     this.italic,
+    this.code,
     this.link,
     this.heading1,
     this.heading2,
@@ -322,7 +326,7 @@ class AttributeTheme {
     this.bulletList,
     this.numberList,
     this.quote,
-    this.code,
+    this.codeblock,
   });
 
   /// The default attribute theme.
@@ -347,6 +351,7 @@ class AttributeTheme {
     return AttributeTheme(
       bold: TextStyle(fontWeight: FontWeight.bold),
       italic: TextStyle(fontStyle: FontStyle.italic),
+      code: TextStyle(backgroundColor: Colors.grey.shade200),
       link: TextStyle(
         decoration: TextDecoration.underline,
         color: theme.accentColor,
@@ -393,7 +398,7 @@ class AttributeTheme {
         ),
         inheritLineTextStyle: true,
       ),
-      code: BlockTheme(
+      codeblock: BlockTheme(
         padding: EdgeInsets.symmetric(vertical: 8.0),
         textStyle: TextStyle(
           fontFamily: monospaceFontFamily,
@@ -412,6 +417,7 @@ class AttributeTheme {
   AttributeTheme copyWith({
     TextStyle bold,
     TextStyle italic,
+    TextStyle code,
     TextStyle link,
     LineTheme heading1,
     LineTheme heading2,
@@ -419,11 +425,12 @@ class AttributeTheme {
     BlockTheme bulletList,
     BlockTheme numberList,
     BlockTheme quote,
-    BlockTheme code,
+    BlockTheme codeblock,
   }) {
     return AttributeTheme(
       bold: bold ?? this.bold,
       italic: italic ?? this.italic,
+      code: code ?? this.code,
       link: link ?? this.link,
       heading1: heading1 ?? this.heading1,
       heading2: heading2 ?? this.heading2,
@@ -431,7 +438,7 @@ class AttributeTheme {
       bulletList: bulletList ?? this.bulletList,
       numberList: numberList ?? this.numberList,
       quote: quote ?? this.quote,
-      code: code ?? this.code,
+      codeblock: codeblock ?? this.codeblock,
     );
   }
 
@@ -442,6 +449,7 @@ class AttributeTheme {
     return copyWith(
       bold: bold?.merge(other.bold) ?? other.bold,
       italic: italic?.merge(other.italic) ?? other.italic,
+      code: code?.merge(other.code) ?? other.code,
       link: link?.merge(other.link) ?? other.link,
       heading1: heading1?.merge(other.heading1) ?? other.heading1,
       heading2: heading2?.merge(other.heading2) ?? other.heading2,
@@ -449,7 +457,7 @@ class AttributeTheme {
       bulletList: bulletList?.merge(other.bulletList) ?? other.bulletList,
       numberList: numberList?.merge(other.numberList) ?? other.numberList,
       quote: quote?.merge(other.quote) ?? other.quote,
-      code: code?.merge(other.code) ?? other.code,
+      codeblock: codeblock?.merge(other.codeblock) ?? other.codeblock,
     );
   }
 
@@ -460,13 +468,14 @@ class AttributeTheme {
     return (otherTheme.bold == bold) &&
         (otherTheme.italic == italic) &&
         (otherTheme.link == link) &&
+        (otherTheme.code == code) &&
         (otherTheme.heading1 == heading1) &&
         (otherTheme.heading2 == heading2) &&
         (otherTheme.heading3 == heading3) &&
         (otherTheme.bulletList == bulletList) &&
         (otherTheme.numberList == numberList) &&
         (otherTheme.quote == quote) &&
-        (otherTheme.code == code);
+        (otherTheme.codeblock == codeblock);
   }
 
   @override
