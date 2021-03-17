@@ -58,6 +58,8 @@ abstract class ZefyrToolbarDelegate {
   /// Returned widget is usually an instance of [ZefyrButton].
   Widget buildButton(BuildContext context, ZefyrToolbarAction action,
       {VoidCallback onPressed});
+
+  List<Widget> buildButtons(BuildContext context, ZefyrScope editor);
 }
 
 /// Scaffold for [ZefyrToolbar].
@@ -220,7 +222,7 @@ class ZefyrToolbarState extends State<ZefyrToolbar>
     // new state each time we toggle overlay.
     final toolbar = ZefyrToolbarScaffold(
       key: _toolbarKey,
-      body: ZefyrButtonList(buttons: _buildButtons(context)),
+      body: ZefyrButtonList(buttons: _delegate.buildButtons(context, editor)),
       trailing: buildButton(context, ZefyrToolbarAction.hideKeyboard),
     );
 
@@ -246,22 +248,6 @@ class ZefyrToolbarState extends State<ZefyrToolbar>
         child: Stack(children: layers),
       ),
     );
-  }
-
-  List<Widget> _buildButtons(BuildContext context) {
-    final buttons = <Widget>[
-      buildButton(context, ZefyrToolbarAction.bold),
-      buildButton(context, ZefyrToolbarAction.italic),
-      LinkButton(),
-      HeadingButton(),
-      buildButton(context, ZefyrToolbarAction.bulletList),
-      buildButton(context, ZefyrToolbarAction.numberList),
-      buildButton(context, ZefyrToolbarAction.quote),
-      buildButton(context, ZefyrToolbarAction.code),
-      buildButton(context, ZefyrToolbarAction.horizontalRule),
-      if (editor.imageDelegate != null) ImageButton(),
-    ];
-    return buttons;
   }
 }
 
@@ -394,5 +380,21 @@ class _DefaultZefyrToolbarDelegate implements ZefyrToolbarDelegate {
         onPressed: onPressed,
       );
     }
+  }
+
+  List<Widget> buildButtons(BuildContext context, ZefyrScope editor) {
+    final buttons = <Widget>[
+      buildButton(context, ZefyrToolbarAction.bold),
+      buildButton(context, ZefyrToolbarAction.italic),
+      LinkButton(),
+      HeadingButton(),
+      buildButton(context, ZefyrToolbarAction.bulletList),
+      buildButton(context, ZefyrToolbarAction.numberList),
+      buildButton(context, ZefyrToolbarAction.quote),
+      buildButton(context, ZefyrToolbarAction.code),
+      buildButton(context, ZefyrToolbarAction.horizontalRule),
+      if (editor.imageDelegate != null) ImageButton(),
+    ];
+    return buttons;
   }
 }
