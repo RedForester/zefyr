@@ -20,6 +20,7 @@ dependencies:
       ref: fix/notus-code-and-pre
   meta: ^1.1.0
   quiver_hashcode: ^2.0.0
+  material_design_icons_flutter: ^4.0.5955
 
 dev_dependencies:
   flutter_test:
