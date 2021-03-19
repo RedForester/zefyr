@@ -67,6 +67,7 @@ abstract class NotusAttributeBuilder<T> implements NotusAttributeKey<T> {
 ///
 ///   * [NotusAttribute.bold]
 ///   * [NotusAttribute.italic]
+///   * [NotusAttribute.code]
 ///   * [NotusAttribute.link]
 ///   * [NotusAttribute.heading]
 ///   * [NotusAttribute.block]
@@ -74,9 +75,11 @@ class NotusAttribute<T> implements NotusAttributeBuilder<T> {
   static final Map<String, NotusAttributeBuilder> _registry = {
     NotusAttribute.bold.key: NotusAttribute.bold,
     NotusAttribute.italic.key: NotusAttribute.italic,
+    NotusAttribute.code.key: NotusAttribute.code,
     NotusAttribute.link.key: NotusAttribute.link,
     NotusAttribute.heading.key: NotusAttribute.heading,
     NotusAttribute.block.key: NotusAttribute.block,
+    NotusAttribute.data_language.key: NotusAttribute.data_language,
     NotusAttribute.embed.key: NotusAttribute.embed,
   };
 
@@ -87,6 +90,12 @@ class NotusAttribute<T> implements NotusAttributeBuilder<T> {
 
   /// Italic style attribute.
   static const italic = _ItalicAttribute();
+
+  /// Code style attribute
+  static const code = _CodeAttribute();
+
+  /// Data-language (pre) style attribute
+  static const data_language = _DataLanguageAttribute();
 
   /// Link style attribute.
   // ignore: const_eval_throws_exception
@@ -121,7 +130,7 @@ class NotusAttribute<T> implements NotusAttributeBuilder<T> {
   static NotusAttribute<String> get bq => block.quote;
 
   /// Alias for [NotusAttribute.block.code].
-  static NotusAttribute<String> get code => block.code;
+  static NotusAttribute<String> get codeblock => block.code;
 
   /// Embed style attribute.
   // ignore: const_eval_throws_exception
@@ -330,6 +339,15 @@ class _BoldAttribute extends NotusAttribute<bool> {
 /// Applies italic style to a text segment.
 class _ItalicAttribute extends NotusAttribute<bool> {
   const _ItalicAttribute() : super._('i', NotusAttributeScope.inline, true);
+}
+
+/// Applies code style to a text segment.
+class _CodeAttribute extends NotusAttribute<bool> {
+  const _CodeAttribute() : super._('code', NotusAttributeScope.inline, true);
+}
+
+class _DataLanguageAttribute extends NotusAttribute<String> {
+  const _DataLanguageAttribute(): super._('data_language', NotusAttributeScope.line, '');
 }
 
 /// Builder for link attribute values.

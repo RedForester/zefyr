@@ -11,6 +11,8 @@ import 'buttons.dart';
 import 'scope.dart';
 import 'theme.dart';
 
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 /// List of all button actions supported by [ZefyrToolbar] buttons.
 enum ZefyrToolbarAction {
   bold,
@@ -26,6 +28,7 @@ enum ZefyrToolbarAction {
   bulletList,
   numberList,
   code,
+  codeblock,
   quote,
   horizontalRule,
   image,
@@ -39,6 +42,7 @@ enum ZefyrToolbarAction {
 final kZefyrToolbarAttributeActions = <ZefyrToolbarAction, NotusAttributeKey>{
   ZefyrToolbarAction.bold: NotusAttribute.bold,
   ZefyrToolbarAction.italic: NotusAttribute.italic,
+  ZefyrToolbarAction.code: NotusAttribute.code,
   ZefyrToolbarAction.link: NotusAttribute.link,
   ZefyrToolbarAction.heading: NotusAttribute.heading,
   ZefyrToolbarAction.headingLevel1: NotusAttribute.heading.level1,
@@ -46,7 +50,7 @@ final kZefyrToolbarAttributeActions = <ZefyrToolbarAction, NotusAttributeKey>{
   ZefyrToolbarAction.headingLevel3: NotusAttribute.heading.level3,
   ZefyrToolbarAction.bulletList: NotusAttribute.block.bulletList,
   ZefyrToolbarAction.numberList: NotusAttribute.block.numberList,
-  ZefyrToolbarAction.code: NotusAttribute.block.code,
+  ZefyrToolbarAction.codeblock: NotusAttribute.block.code,
   ZefyrToolbarAction.quote: NotusAttribute.block.quote,
   ZefyrToolbarAction.horizontalRule: NotusAttribute.embed.horizontalRule,
 };
@@ -194,7 +198,7 @@ class ZefyrToolbarState extends State<ZefyrToolbar>
   @override
   void initState() {
     super.initState();
-    _delegate = widget.delegate ?? _DefaultZefyrToolbarDelegate();
+    _delegate = widget.delegate ?? DefaultZefyrToolbarDelegate();
     _overlayAnimation =
         AnimationController(vsync: this, duration: Duration(milliseconds: 100));
     _selection = editor.selection;
@@ -204,7 +208,7 @@ class ZefyrToolbarState extends State<ZefyrToolbar>
   void didUpdateWidget(ZefyrToolbar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.delegate != oldWidget.delegate) {
-      _delegate = widget.delegate ?? _DefaultZefyrToolbarDelegate();
+      _delegate = widget.delegate ?? DefaultZefyrToolbarDelegate();
     }
   }
 
@@ -319,7 +323,7 @@ class _ZefyrButtonListState extends State<ZefyrButtonList> {
   }
 }
 
-class _DefaultZefyrToolbarDelegate implements ZefyrToolbarDelegate {
+class DefaultZefyrToolbarDelegate implements ZefyrToolbarDelegate {
   static const kDefaultButtonIcons = {
     ZefyrToolbarAction.bold: Icons.format_bold,
     ZefyrToolbarAction.italic: Icons.format_italic,
@@ -331,6 +335,7 @@ class _DefaultZefyrToolbarDelegate implements ZefyrToolbarDelegate {
     ZefyrToolbarAction.bulletList: Icons.format_list_bulleted,
     ZefyrToolbarAction.numberList: Icons.format_list_numbered,
     ZefyrToolbarAction.code: Icons.code,
+    ZefyrToolbarAction.codeblock: MdiIcons.codeBraces,
     ZefyrToolbarAction.quote: Icons.format_quote,
     ZefyrToolbarAction.horizontalRule: Icons.remove,
     ZefyrToolbarAction.image: Icons.photo,
