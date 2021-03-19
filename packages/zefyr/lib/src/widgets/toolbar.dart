@@ -37,6 +37,7 @@ enum ZefyrToolbarAction {
   hideKeyboard,
   close,
   confirm,
+  mention,
 }
 
 final kZefyrToolbarAttributeActions = <ZefyrToolbarAction, NotusAttributeKey>{
@@ -344,6 +345,7 @@ class DefaultZefyrToolbarDelegate implements ZefyrToolbarDelegate {
     ZefyrToolbarAction.hideKeyboard: Icons.keyboard_hide,
     ZefyrToolbarAction.close: Icons.close,
     ZefyrToolbarAction.confirm: Icons.check,
+    ZefyrToolbarAction.mention: Icons.person_rounded,
   };
 
   static const kSpecialIconSizes = {
