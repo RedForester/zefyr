@@ -54,7 +54,7 @@ class ZefyrTheme extends InheritedWidget {
 class ZefyrThemeData {
   final TextStyle boldStyle;
   final TextStyle italicStyle;
-  final TextStyle codeStyle;;
+  final TextStyle codeStyle;
   final TextStyle linkStyle;
   final StyleTheme paragraphTheme;
   final HeadingTheme headingTheme;
